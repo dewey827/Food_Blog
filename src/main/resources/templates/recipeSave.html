@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=5.0">
+    <title>Food Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-myeongjo.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+<body>
+<header id="header">
+    <th:block th:replace="~{/layout/header}"></th:block>
+</header>
+
+<main id="main" class="sub --recipe_save">
+    <form action="/recipe/save" id ="recipe_form" method="post" enctype="multipart/form-data">
+        <section class="sec start">
+        </section>
+        <section class="sec sec01">
+            <div class="inner">
+                <h2 class="title tc-org" style="font-family: 'NanumMyeongjoBold'; font-style: italic;">
+                    New Recipe
+                </h2>
+                <div class="sub-head"></div>
+                <label class="fs_lg" for="visualImage">대표 이미지 :</label>
+                <input type="file" id="visualImage" name="visualImage" multiple><br><br>
+                <h2 class="title">
+                    <label for="title">제목 : </label><input type="text" id="title" name="title">
+                </h2>
+                <textarea name="caption" class="caption-txt" placeholder="레시피에 대한 간략한 소개를 작성해주세요!" rows="5"></textarea>
+            </div>
+        </section>
+        <section class="sec">
+            <div class="inner">
+                <ul class="icon_list">
+                    <li class="icon_item">
+                        <img src="/images/icon_man.png" alt="">
+                        <label for="foodSize">음식 양</label>
+                        <select name="foodSize" id="foodSize">
+                            <option value="1 인분">1 인분</option>
+                            <option value="2 인분">2 인분</option>
+                            <option value="3 인분">3 인분</option>
+                            <option value="4 인분">4 인분</option>
+                            <option value="5 인분">5 인분</option>
+                        </select>
+                    </li>
+                    <li class="icon_item">
+                        <img src="/images/icon_time.png" alt="">
+                        <label for="cookTime">조리 시간</label>
+                        <input type="number" id="cookTime" name="cookTime" placeholder="1">분 이내
+                    </li>
+                    <li class="icon_item">
+                        <img src="/images/icon_star.png" alt="">
+                        <label for="difficulty">난이도</label>
+                        <select name="difficulty" id="difficulty">
+                            <option value="누구나">누구나</option>
+                            <option value="중간">중간</option>
+                            <option value="어려움">어려움</option>
+                            <option value="전문가">전문가</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="sec">
+            <div class="inner">
+                <!-- <hr> -->
+                <p class="fs_lg mb_md tc-org"><b>재료</b><span class="caption"> Ingredients</span></p>
+                <ul class="table-list">
+                    <li>
+                        <table class="recipe_tb">
+                            <colgroup>
+                                <col width="50%">
+                                <col width="50%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td class="fs_md"> <label for="ingre1">재료 1 : </label><input type="text" id="ingre1" name="ingre1"></td>
+                                <td class="fs_md"> <label for="grams1">용량 : </label><input type="number" id="grams1" name="grams1" placeholder="0"> g</td>
+                            </tr>
+                            <tr>
+                                <td class="fs_md"> <label for="ingre2">재료 2 : </label><input type="text" id="ingre2" name="ingre2"></td>
+                                <td class="fs_md"> <label for="grams2">용량 : </label><input type="number" id="grams2" name="grams2" placeholder="0"> g</td>
+                            </tr>
+                            <tr>
+                                <td class="fs_md"> <label for="ingre3">재료 3 : </label><input type="text" id="ingre3" name="ingre3"></td>
+                                <td class="fs_md"> <label for="grams3">용량 : </label><input type="number" id="grams3" name="grams3" placeholder="0"> g</td>
+                            </tr>
+                            <tr>
+                                <td class="fs_md"> <label for="ingre4">재료 4 : </label><input type="text" id="ingre4" name="ingre4"></td>
+                                <td class="fs_md"> <label for="grams4">용량 : </label><input type="number" id="grams4" name="grams4" placeholder="0"> g</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                    <li>
+                        <table class="recipe_tb">
+                            <colgroup>
+                                <col width="50%">
+                                <col width="50%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td class="fs_md"> <label for="ingre5">재료 5 : </label><input type="text" id="ingre5" name="ingre5"></td>
+                                <td class="fs_md"> <label for="grams5">용량 : </label><input type="number" id="grams5" name="grams5" placeholder="0"> g</td>
+                            </tr>
+                            <tr>
+                                <td class="fs_md"> <label for="ingre6">재료 6 : </label><input type="text" id="ingre6" name="ingre6"></td>
+                                <td class="fs_md"> <label for="grams6">용량 : </label><input type="number" id="grams6" name="grams6" placeholder="0"> g</td>
+                            </tr>
+                            <tr>
+                                <td class="fs_md"> <label for="ingre7">재료 7 : </label><input type="text" id="ingre7" name="ingre7"></td>
+                                <td class="fs_md"> <label for="grams7">용량 : </label><input type="number" id="grams7" name="grams7" placeholder="0"> g</td>
+                            </tr>
+                            <tr>
+                                <td class="fs_md"> <label for="ingre8">재료 8 : </label><input type="text" id="ingre8" name="ingre8"></td>
+                                <td class="fs_md"> <label for="grams8">용량 : </label><input type="number" id="grams8" name="grams8" placeholder="0"> g</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </li>
+
+
+                </ul>
+            </div>
+        </section>
+        <section class="sec">
+            <div class="inner">
+                <hr>
+                <p class="fs_lg mb_lg tc-org"><b>동영상</b><span class="caption"> video</span></p>
+                <td class="fs_md"> <label for="ytLink">유뷰브 링크 : </label><input type="text" id="ytLink" name="ytLink"></td>
+            </div>
+        </section>
+        <section class="sec">
+            <div class="inner">
+                <hr>
+                <p class="fs_lg mb_lg tc-org"><b>조리 순서</b><span class="caption"> Steps</span></p>
+                <div class="steps_wrap">
+                    <ul class="step_list">
+                        <li class="step">
+                            <p class="fs_lg"><input type="text" name="step1"></p>
+                            <div>
+                                <label for="thumb1">이미지 첨부 : </label> <input type="file" id="thumb1" name="thumb1" multiple><br>
+                            </div>
+                        </li>
+                        <li class="step">
+                            <p class="fs_lg"><input type="text" name="step2"></p>
+                            <div>
+                                <label for="thumb2">이미지 첨부 : </label> <input type="file" id="thumb2" name="thumb2" multiple><br>
+                            </div>
+                        </li>
+                        <li class="step">
+                            <p class="fs_lg"><input type="text" name="step3"></p>
+                            <div>
+                                <label for="thumb3">이미지 첨부 : </label> <input type="file" id="thumb3" name="thumb3" multiple><br>
+                            </div>
+                        </li>
+                        <li class="step">
+                            <p class="fs_lg"><input type="text" name="step4"></p>
+                            <div>
+                                <label for="thumb4">이미지 첨부 : </label> <input type="file" id="thumb4" name="thumb4" multiple><br>
+                            </div>
+                        </li>
+                        <li class="step">
+                            <p class="fs_lg"><input type="text" name="step5"></p>
+                            <div>
+                                <label for="thumb5">이미지 첨부 : </label> <input type="file" id="thumb5" name="thumb5" multiple><br>
+                            </div>
+                        </li>
+                        <li class="step">
+                            <p class="fs_lg"><input type="text" name="step6"></p>
+                            <div>
+                                <label for="thumb6">이미지 첨부 : </label> <input type="file" id="thumb6" name="thumb6" multiple><br>
+                            </div>
+                        </li>
+                        <li class="step">
+                            <p class="fs_lg"><input type="text" name="step7"></p>
+                            <div>
+                                <label for="thumb7">이미지 첨부 : </label> <input type="file" id="thumb7" name="thumb7" multiple><br>
+                            </div>
+                        </li>
+                        <li class="step">
+                            <p class="fs_lg"><input type="text" name="step8"></p>
+                            <div>
+                                <label for="thumb8">이미지 첨부 : </label> <input type="file" id="thumb8" name="thumb8" multiple><br>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="sec">
+            <div class="inner">
+                <hr>
+                <input type="submit" value="글 등록하기" class="submit">
+            </div>
+        </section>
+    </form>
+</main>
+
+<footer id="footer">
+    <th:block th:replace="~{./layout/footer}"></th:block>
+</footer>
+
+</body>
+</html>

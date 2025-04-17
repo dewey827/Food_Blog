@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=5.0">
+    <title>Food Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-myeongjo.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+<body>
+<header id="header">
+    <th:block th:replace="~{/layout/header}"></th:block>
+</header>
+<main id="main" class="sub --guest">
+    <section class="sec start">
+    </section>
+    <section class="sec sec01">
+        <div class="inner">
+            <h2 class="title tc-org" style="font-family: 'NanumMyeongjoBold'; font-style: italic;">
+                Guest Book
+            </h2>
+            <div class="sub-head"></div>
+            <div class="visual">
+                <!-- <img th:src="@{|/upload/${imgFile.storedFileName}|}" alt=""> -->
+                <img src="/images/main_img03.jpg" alt="">
+            </div>
+            <h2 class="title">
+                방문자 의견을 남겨주세요!
+            </h2>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="inner">
+            <div class="comment_wrap" th:each="comment : ${commentList}">
+                <div class="title-area">
+                    <h4 class="fs_lg">
+                       <b th:text="${comment.name}"></b>
+                    </h4>
+                </div>
+                <div class="content-area">
+                    <p class="fs_md" th:text="${comment.content}">
+
+                    </p>
+                </div>
+                <div class="btn_wrap">
+                    <form th:action="@{/comment/delete}" method="post">
+                        <input type="hidden" name="c_id" th:value="${comment.id}">
+                        <input type="submit" class="btn-flat" value="Delete" style="color: var(--natural_0); padding: 5px 10px;">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="inner">
+            <div class="sub-head"></div>
+            <div class="comment_wrap" style="background: #FFE5C8;">
+                <form action="/comment/list" id="comment_form" method="post">
+                    <div class="input_container">
+                    <div class="input_wrap">
+                    <label class="fs_lg" for="c_name">이름 : </label> <input class="fs_md" type="text" id="c_name" name="name">
+                    </div>
+                    <div class="input_wrap">
+                    <label class="fs_lg" for="c_password">비밀번호 : </label> <input  class="fs_md" type="text" id="c_password" name="password">
+                    </div>
+                    </div>
+                    <textarea class="fs_md" name="content" id="" rows="3" placeholder="내용을 입력해주세요."></textarea>
+                    <input class="submit" type="submit" value="댓글 등록">
+
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+<footer id="footer">
+    <th:block th:replace="~{/layout/footer}"></th:block>
+</footer>
+</body>
+</html>

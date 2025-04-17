@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=5.0">
+    <title>Food Blog</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-myeongjo.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="./js/script.js"></script>
+</head>
+<body>
+    <!-- <header id="header" th:include="layout/header :: header"></header> -->
+     <header id="header">
+        <th:block th:replace="~{/layout/header}"></th:block>
+     </header>
+
+
+    <main id="main" class="main">
+        <!-- <sectiom class="openning">
+            <div class="openning-element"></div>
+        </sectiom> -->
+        <section class="sec sec-visual">
+            <div class="visual">
+                <div class="visual-img">
+                    <img src="./images/main-visual01.png" alt="">
+                </div>
+                <h2 class="visual-tit">
+                    <span class="letterUp">We</span><span class="letterDown">lco</span><span class="letterUp">me</span> <span class="letterDown">to</span>
+                </h2>
+                <h2 class="visual-tit">
+                    <span class="letterDown">F</span><span class="letterUp">ood </span><span class="letterUp">Bl</span><span class="letterDown">og!</span>
+                </h2>
+           </div>
+           <div class="inner">
+            <p class="fs_lg">
+                Blog for Food Recipe & Food Magazine
+            </p>
+            <div class="txt-box">
+                <p class="fs_md">
+                    This webpage is for educational purposes only and is not for commercial use.
+                </p>
+                <p class="fs_md">
+                    Made By Kim Seongwoo & Lee Yeonghyeon.
+                </p>
+            </div>
+           </div>
+        </section>
+       
+        <section class="sec item-list">
+            <article class="item">
+                <div class="inner">
+                    <ul class="item-layout">
+                        <li class="txt-area">
+                            <h3 class="title">Recipe</h3>
+                            <p class="fs_md">간단한 가정식부터 특별한 날을 위한 요리까지,  <br>누구나 쉽게 따라 할 수 있는 레시피</p>
+                            <button><a href="/recipe/list">View More</a></button>
+                        </li>
+                        <li class="img-area">
+                            <a href="/recipe/list">
+                                <img src="/images/main_img01.jpg" alt="">
+                            </a>                            
+                        </li>
+                    </ul>
+                </div>                
+            </article>
+            <article class="item">
+                <div class="inner">
+                    <ul class="item-layout">
+                        <li class="txt-area">
+                            <h3 class="title">Magazine</h3>
+                            <p class="fs_md">간단한 가정식부터 특별한 날을 위한 요리까지,  <br>누구나 쉽게 따라 할 수 있는 레시피</p>
+                            <button><a href="/magazine/list">View More</a></button>
+                        </li>
+                        <li class="img-area">
+                            <a href="/magazine/list">
+                                <img src="/images/main_img02.jpg" alt="">
+                            </a>      
+                        </li>
+                    </ul>
+                </div>                
+            </article>
+            <article class="item">
+                <div class="inner">
+                    <ul class="item-layout">
+                        <li class="txt-area">
+                            <h3 class="title">Guest Book</h3>
+                            <p class="fs_md">방명록을 남겨주세요!</p>
+                            <button><a href="/comment/list">Go Page</a></button>
+                        </li>
+                        <li class="img-area">
+                            <a href="">
+                                <img src="/images/main_img03.jpg" alt="">
+                            </a>      
+                        </li>
+                    </ul>
+                </div>                
+            </article>
+   
+        </section>
+        <section class="sec best">
+
+        </section>
+        <section class="sec youtude">
+            <div class="inner">
+                <div class="yt_wrap">
+                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/xPPLbEFbCAo" title="Restaurant Ad Video Template (Editable)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- <footer id="footer" th:include="layout/header :: footer"></footer> -->
+     <footer id="footer">
+        <th:block th:replace="~{/layout/footer}"></th:block>
+     </footer>
+</body>
+</html>

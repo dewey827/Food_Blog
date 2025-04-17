@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FoodBlog">
+    <!--레시피-->
+    <!--레시피-->
+    <insert id="recipeSave" parameterType="recipe" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO recipe_table(id, title, fileAttached, caption, foodSize, cookTime, difficulty,
+                                 ingre1, ingre2, ingre3, ingre4, ingre5, ingre6, ingre7, ingre8,
+                                 grams1, grams2, grams3, grams4, grams5, grams6, grams7, grams8, ytLink,
+                                 step1, step2, step3, step4, step5, step6, step7, step8)
+
+        VALUES(#{id}, #{title}, #{fileAttached}, #{caption}, #{foodSize}, #{cookTime}, #{difficulty},
+               #{ingre1}, #{ingre2}, #{ingre3}, #{ingre4}, #{ingre5}, #{ingre6}, #{ingre7}, #{ingre8},
+               #{grams1}, #{grams2}, #{grams3}, #{grams4}, #{grams5}, #{grams6}, #{grams7}, #{grams8}, #{ytLink},
+               #{step1}, #{step2}, #{step3}, #{step4}, #{step5}, #{step6}, #{step7}, #{step8});
+    </insert>
+
+    <select id="recipeFindAll" resultType="recipe">
+        SELECT id, title, Hits FROM recipe_table ORDER BY id DESC;
+    </select>
+
+    <select id="recipeFindById" parameterType="Long" resultType="recipe">
+        SELECT id, title, caption, Hits, foodSize, cookTime, difficulty,
+               ingre1, ingre2, ingre3, ingre4, ingre5, ingre6, ingre7, ingre8,
+               grams1, grams2, grams3, grams4, grams5, grams6, grams7, grams8, ytLink,
+               step1, step2, step3, step4, step5, step6, step7, step8
+        FROM recipe_table   WHERE id = #{id};
+    </select>
+
+    <update id="recipeUpdate" parameterType="recipe">
+        UPDATE recipe_table SET title=#{title}, caption=#{caption}, foodSize=#{foodSize}, cookTime=#{cookTime},
+                                difficulty=#{difficulty}, ingre1=#{ingre1}, ingre2=#{ingre2}, ingre3=#{ingre3}, ingre4=#{ingre4},
+                                ingre5=#{ingre5}, ingre6=#{ingre6}, ingre7=#{ingre7}, ingre8=#{ingre8}, grams1=#{grams1}, grams2=#{grams2},
+                                grams3=#{grams3}, grams4=#{grams4}, grams5=#{grams5}, grams6=#{grams6}, grams7=#{grams7}, grams8=#{grams8}, ytLink=#{ytLink},
+                                step1=#{step1}, step2=#{step2}, step3=#{step3}, step4=#{step4}, step5=#{step5}, step6=#{step6}, step7=#{step7}, step8=#{step8}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="recipeDelete" parameterType="Long">
+        DELETE FROM recipe_table WHERE id=#{id};
+    </delete>
+
+    <update id="recipeHitsUpdate" parameterType="Long">
+        UPDATE recipe_table SET Hits = Hits+1 WHERE id=#{id}
+    </update>
+
+    <insert id="recipeFileSave" parameterType="imageFile">
+        INSERT INTO image_file_table(articleId, originalFileName, storedFileName)
+        VALUES(#{articleId},#{originalFileName},#{storedFileName})
+    </insert>
+
+    <select id="recipeFileFind" parameterType="Long" resultType="imageFile">
+        SELECT * FROM image_file_table WHERE articleId = #{id}
+    </select>
+
+    <select id="recipeFindBest" resultType="recipe">
+        SELECT id, title, caption, Hits
+        FROM recipe_table
+        ORDER BY Hits DESC
+            LIMIT 3;
+    </select>
+
+    <!--==================================================================================================-->
+
+    <!--매거진-->
+    <insert id="magazineSave" parameterType="magazine" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO magazine_table(title,caption,contentText,fileAttached)
+
+        VALUES(#{title}, #{caption}, #{contentText}, #{fileAttached} );
+    </insert>
+    <insert id="saveMagazineFile" parameterType="magazineFile" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO  magazine_file_table(articleId, originalFileName, storedFileName)
+        VALUES(#{articleId},#{originalFileName},#{storedFileName})
+    </insert>
+
+    <select id="findMagazineFile" parameterType="Long" resultType="magazineFile">
+        SELECT * FROM magazine_file_table WHERE articleId = #{id}
+    </select>
+    <select id="magazineFindAll" resultType="magazine">
+        SELECT id, title, caption FROM magazine_table ORDER BY id DESC;
+    </select>
+    <select id="magazineFileFind" parameterType="Long" resultType="magazineFile">
+        select * from magazine_file_table where articleId = #{id}
+    </select>
+    <select id="magazineFindById" parameterType="Long" resultType="magazine">
+        SELECT id, title, caption, contentText, fileAttached
+        FROM magazine_table  where id=#{id}
+    </select>
+    <update id="magazineUpdateHits" parameterType="Long">
+        update magazine_table set Hits=Hits+1 where id=#{id}
+    </update>
+    <update id="magazineUpdate">
+        update magazine_table set title=#{title}, caption=#{caption}, contentText=#{contentText} where id=#{id}
+    </update>
+    <delete id="magazineDelete" parameterType="Long">
+        DELETE FROM magazine_table WHERE id=#{id};
+    </delete>
+    <select id="magazineFindBest" resultType="magazine">
+        SELECT id, title, caption, Hits
+        FROM magazine_table
+        ORDER BY Hits DESC
+            LIMIT 3;
+    </select>
+
+    <!--==================================================================================================-->
+    <!--댓글-->
+
+    <insert id="commentSave" parameterType="comment" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO comment_table(name, password, content)
+        VALUES(#{name},#{password},#{content});
+    </insert>
+
+    <select id="commentFindAll" resultType="comment">
+        SELECT id, name, content  FROM comment_table;
+    </select>
+
+
+    <delete id="commentDelete" parameterType="Long">
+        DELETE FROM comment_table WHERE id=#{id};
+    </delete>
+
+
+</mapper>

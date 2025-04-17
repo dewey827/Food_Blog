@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=5.0">
+    <title>Food Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-myeongjo.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+<body>
+<header id="header">
+    <th:block th:replace="~{/layout/header}"></th:block>
+</header>
+
+
+<main id="main" class="sub --recipe_detail">
+    <section class="sec start">
+    </section>
+    <section class="sec sec01">
+        <div class="inner">
+
+            <div class="subtitle_wrap">
+                <h2 class="title tc-org" style="font-family: 'NanumMyeongjoBold'; font-style: italic;">
+                    Recipe
+                </h2>
+                <span class="btn-sm"><a th:href="@{'/recipe/update/' + ${recipe.id}}">Edit Post</a></span>
+                <span class="btn-flat"><a th:href="@{'/recipe/delete/' + ${recipe.id}}">Delete</a></span>
+            </div>
+
+            <div class="sub-head"></div>
+
+            <div class="visual">
+                <img th:src="@{|/upload/${recipeFileList[0].storedFileName}|}" alt="">
+            </div>
+
+            <h2 class="title" th:text="${recipe.title}"></h2>
+            <p class="caption" th:text="${recipe.caption}"></p>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="inner">
+            <ul class="icon_list">
+                <li class="icon_item">
+                    <img src="/images/icon_man.png" alt="">
+                    <p class="fs_md" th:text="${recipe.foodSize}"></p>
+                </li>
+                <li class="icon_item">
+                    <img src="/images/icon_time.png" alt="">
+                    <p class="fs_md" th:text="${recipe.cookTime + ' 분 이내'}"></p>
+                </li>
+                <li class="icon_item">
+                    <img src="/images/icon_star.png" alt="">
+                    <p class="fs_md" th:text="${recipe.difficulty}"></p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="inner">
+            <!-- <hr> -->
+            <p class="fs_lg mb_md tc-org"><b>재료</b><span class="caption"> Ingredients</span></p>
+            <ul class="table-list">
+                <li>
+                    <table class="recipe_tb">
+                        <colgroup>
+                            <col width="50%">
+                            <col width="50%">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td class="fs_md" th:text="${recipe.ingre1}"></td>
+                            <td class="fs_md" th:text="${recipe.grams1}+' g'"></td>
+                        </tr>
+                        <tr>
+                            <td class="fs_md" th:text="${recipe.ingre2}"></td>
+                            <td class="fs_md" th:text="${recipe.grams2}+' g'"></td>
+                        </tr>
+                        <tr>
+                            <td class="fs_md" th:text="${recipe.ingre3}"></td>
+                            <td class="fs_md" th:text="${recipe.grams3}+' g'"></td>
+                        </tr>
+                        <tr>
+                            <td class="fs_md" th:text="${recipe.ingre4}"></td>
+                            <td class="fs_md" th:text="${recipe.grams4}+' g'"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="recipe_tb">
+                        <colgroup>
+                            <col width="50%">
+                            <col width="50%">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td class="fs_md" th:text="${recipe.ingre5}"></td>
+                            <td class="fs_md" th:text="${recipe.grams5}+' g'"></td>
+                        </tr>
+                        <tr>
+                            <td class="fs_md" th:text="${recipe.ingre6}"></td>
+                            <td class="fs_md" th:text="${recipe.grams6}+' g'"></td>
+                        </tr>
+                        <tr>
+                            <td class="fs_md" th:text="${recipe.ingre7}"></td>
+                            <td class="fs_md" th:text="${recipe.grams7}+' g'"></td>
+                        </tr>
+                        <tr>
+                            <td class="fs_md" th:text="${recipe.ingre8}"></td>
+                            <td class="fs_md" th:text="${recipe.grams8}+' g'"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="inner">
+            <hr>
+            <p class="fs_lg mb_lg tc-org"><b>동영상</b><span class="caption"> video</span></p>
+            <div class="yt_wrap" th:utext="${recipe.ytLink}">
+            </div>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="inner">
+            <hr>
+            <p class="fs_lg mb_lg tc-org"><b>조리 순서</b><span class="caption"> Steps</span></p>
+            <div class="steps_wrap">
+                <ul class="step_list">
+                    <li class="step">
+                        <p class="fs_lg" th:text="${recipe.step1}"><b></b></p>
+                        <div class="img-area">
+                            <img th:src="@{|/upload/${recipeFileList[1].storedFileName}|}" alt="">
+                        </div>
+                    </li>
+                    <li class="step">
+                        <p class="fs_lg" th:text="${recipe.step2}"><b></b></p>
+                        <div class="img-area">
+                            <img th:src="@{|/upload/${recipeFileList[2].storedFileName}|}" alt="">
+                        </div>
+                    </li>
+                    <li class="step">
+                        <p class="fs_lg" th:text="${recipe.step3}"><b></b></p>
+                        <div class="img-area">
+                            <img th:src="@{|/upload/${recipeFileList[3].storedFileName}|}" alt="">
+                        </div>
+                    </li>
+                    <li class="step">
+                        <p class="fs_lg" th:text="${recipe.step4}"><b></b></p>
+                        <div class="img-area">
+                            <img th:src="@{|/upload/${recipeFileList[4].storedFileName}|}" alt="">
+                        </div>
+                    </li>
+                    <li class="step">
+                        <p class="fs_lg" th:text="${recipe.step5}"><b></b></p>
+                        <div class="img-area">
+                            <img th:src="@{|/upload/${recipeFileList[5].storedFileName}|}" alt="">
+                        </div>
+                    </li>
+                    <li class="step">
+                        <p class="fs_lg" th:text="${recipe.step6}"><b></b></p>
+                        <div class="img-area">
+                            <img th:src="@{|/upload/${recipeFileList[6].storedFileName}|}" alt="">
+                        </div>
+                    </li>
+                    <li class="step">
+                        <p class="fs_lg" th:text="${recipe.step7}"><b></b></p>
+                        <div class="img-area">
+                            <img th:src="@{|/upload/${recipeFileList[7].storedFileName}|}" alt="">
+                        </div>
+                    </li>
+                    <li class="step">
+                        <p class="fs_lg" th:text="${recipe.step8}"><b></b></p>
+                        <div class="img-area">
+                            <img th:src="@{|/upload/${recipeFileList[8].storedFileName}|}" alt="">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="inner">
+            <hr>
+        </div>
+    </section>
+</main>
+<footer id="footer">
+    <th:block th:replace="~{/layout/footer}"></th:block>
+</footer>
+</body>
+</html>

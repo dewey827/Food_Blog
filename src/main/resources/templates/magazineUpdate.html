@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=5.0">
+    <title>Food Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-myeongjo.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+<body>
+    <header id="header">
+        <th:block th:replace="~{/layout/header}"></th:block>
+    </header>
+    <main id="main" class="sub --magazine_save">
+        <form th:action="@{|/magazine/update/${magazine.id}|}" id ="magazine_update_form" method="post" enctype="updateForm">
+            <input type="hidden" name="id" th:value="${magazine.id}">
+        <section class="sec start">
+        </section>
+       <section class="sec sec01">
+        <div class="inner">
+            <h2 class="title tc-org" style="font-family: 'NanumMyeongjoBold'; font-style: italic;">
+                Article Update
+            </h2>
+            <div class="sub-head"></div>
+            <div class="visual" th:each="magazineFileDTO: ${magazineFileDTOList}">
+                <img th:src="@{|/upload/${magazineFileDTO.storedFileName}|}" alt="">
+            </div>
+            <p class="fs_md mb_lg">이미지는 수정이 불가능 합니다.</p>
+            <h2 class="title">
+                <label for="m_title">제목 : </label><input id="m_title" type="text" name="title" th:value="${magazine.title}">
+            </h2>
+            <textarea name="caption" class="caption-txt" rows="5" th:text="${magazine.caption}"></textarea>
+        </div>
+       </section>
+       <section class="sec">
+        <div class="inner">
+            <hr>
+            <textarea name="contentText" class="content caption-txt" rows="10" th:text="${magazine.contentText}"></textarea>
+        </div>
+       </section>
+       <section class="sec">
+        <div class="inner">
+            <hr>
+            <input type="submit" value="글 수정 완료" class="submit">
+        </div>
+       </section>
+
+       </form>
+    </main>
+    <footer id="footer">
+        <th:block th:replace="~{/layout/footer}"></th:block>
+    </footer>
+</body>
+</html>

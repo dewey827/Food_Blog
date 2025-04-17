@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=5.0">
+    <title>Food Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-myeongjo.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+<body>
+    <header id="header">
+        <th:block th:replace="~{/layout/header}"></th:block>
+    </header>
+    <main id="main" class="sub --magazine_detail">
+        <section class="sec start">
+        </section>
+       <section class="sec sec01">
+            <div class="inner">
+                <div class="subtitle_wrap">
+                    <h2 class="title tc-org" style="font-family: 'NanumMyeongjoBold'; font-style: italic;">
+                        Magezine
+                    </h2>
+                    <span class="btn-sm"><a onclick="updateReq()">Edit Post</a></span>
+                    <span class="btn-flat"><a onclick="deleteReq()">Delete</a></span>
+                </div>
+                <div class="sub-head"></div>
+                <div class="visual" th:each="magazineFileDTO: ${magazineFileDTOList}">
+                     <img th:src="@{|/upload/${magazineFileDTO.storedFileName}|}" alt="">
+                </div>
+                <h2 class="title" th:text="${magazine.title}">
+                </h2>
+                <p class="caption" th:text="${magazine.caption}">
+                </p>
+            </div>
+       </section>
+       <section class="sec">
+        <div class="inner">
+            <p class="fs_lg" th:text="${magazine.contentText}">
+
+            </p>
+        </div>
+       </section>
+       <section class="sec">
+        <div class="inner">
+            <hr>
+        </div>
+       </section>
+    </main>
+    <footer id="footer">
+        <th:block th:replace="~{/layout/footer}"></th:block>
+    </footer>
+    <script th:inline="javascript">
+
+        const updateReq = () => {
+            location.href = `./update/[[${magazine.id}]]`;
+        }
+        const deleteReq = () => {
+            location.href = `./delete/[[${magazine.id}]]`;
+        }
+    </script>
+</body>
+</html>
