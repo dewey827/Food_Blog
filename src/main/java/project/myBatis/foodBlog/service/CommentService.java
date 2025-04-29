@@ -23,10 +23,8 @@ public class CommentService {
         return blogRepository.commentFindAll();
     }
 
-
-//    //D. 방명록 삭제
+    //D. 방명록 삭제
     public void delete(Long id){
         blogRepository.commentDelete(id);
     }
-
 }

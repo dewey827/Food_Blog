@@ -42,11 +42,9 @@ public class MagazineController {
     public String magazineFindAll(Model model) {
         List<MagazineDTO> magazineDTOList = magazineService.findAll();
         model.addAttribute("magazineList", magazineDTOList);
-//        System.out.println("magazineDTOList : " + magazineDTOList);
 
         List<MagazineDTO> bestMagazines = magazineService.findBest();
         model.addAttribute("bestMagazines", bestMagazines);
-//        System.out.println("best magazine: " + bestMagazines);
 
         Map<Long, List<MagazineFileDTO>> magazineMap = new HashMap<>();
         for (MagazineDTO magazineDTO : magazineDTOList) {

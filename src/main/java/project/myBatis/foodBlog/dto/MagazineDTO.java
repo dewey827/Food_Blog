@@ -19,5 +19,4 @@ public class MagazineDTO {
     private int fileAttached;
     private List<MultipartFile> visualImage;
     private String contentText;
-
 }

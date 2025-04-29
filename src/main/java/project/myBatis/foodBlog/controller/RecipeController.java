@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @Controller
 @RequestMapping("/recipe")
 @RequiredArgsConstructor
@@ -33,7 +32,6 @@ public class RecipeController {
     //C. 게시글 작성 - 게시글 저장 - 리다이렉트
     @PostMapping("/save")
     public String recipeSave(RecipeDTO recipeDTO) throws IOException {
-
         recipeService.recipeSave(recipeDTO);
         System.out.println(recipeDTO);
         return "redirect:/recipe/list";
@@ -61,7 +59,6 @@ public class RecipeController {
             bestRecipeMap.put(recipeDTO.getId(), recipeFileDTOList);
         }
         model.addAttribute("bestRecipeFileDTOList", bestRecipeMap);
-
 
         return "recipeList";
     }

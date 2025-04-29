@@ -13,7 +13,6 @@ import java.util.List;
 public class RecipeDTO {
 
     private Long id;
-
     private String title;
     private int fileAttached;
     private List<MultipartFile> visualImage;
@@ -55,5 +54,4 @@ public class RecipeDTO {
     private List<MultipartFile> thumb6;
     private List<MultipartFile> thumb7;
     private List<MultipartFile> thumb8;
-
 }

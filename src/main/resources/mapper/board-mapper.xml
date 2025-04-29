@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="FoodBlog">
-    <!--레시피-->
+    
     <!--레시피-->
     <insert id="recipeSave" parameterType="recipe" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO recipe_table(id, title, fileAttached, caption, foodSize, cookTime, difficulty,
@@ -62,7 +62,6 @@
     </select>
 
     <!--==================================================================================================-->
-
     <!--매거진-->
     <insert id="magazineSave" parameterType="magazine" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO magazine_table(title,caption,contentText,fileAttached)
@@ -102,10 +101,8 @@
         ORDER BY Hits DESC
             LIMIT 3;
     </select>
-
     <!--==================================================================================================-->
     <!--댓글-->
-
     <insert id="commentSave" parameterType="comment" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO comment_table(name, password, content)
         VALUES(#{name},#{password},#{content});
@@ -115,10 +112,8 @@
         SELECT id, name, content  FROM comment_table;
     </select>
 
-
     <delete id="commentDelete" parameterType="Long">
         DELETE FROM comment_table WHERE id=#{id};
     </delete>
-
 
 </mapper>

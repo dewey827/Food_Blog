@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MagazineService {
-    private final BlogRepository blogRepository;
 
+    private final BlogRepository blogRepository;
 
     public void save(MagazineDTO magazineDTO) throws IOException {
        if (magazineDTO.getVisualImage().get(0).isEmpty()){

@@ -19,7 +19,6 @@ public class CommentController {
 
     private final CommentService commentService;
 
-
     //C. 댓글 작성 - 댓글 저장 - 리다이렉트
     @PostMapping("/list")
     public String commentSave(CommentDTO commentDTO)  {
@@ -42,5 +41,4 @@ public class CommentController {
         commentService.delete(id); // 댓글 삭제 로직 호출
         return "redirect:/comment/list"; // 삭제 후 댓글 목록 페이지로 리다이렉트
     }
-
 }

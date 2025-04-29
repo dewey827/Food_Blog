@@ -11,13 +11,7 @@ public class CommentDTO {
 
     private Long id;
     private Long articleId;
-
     private String name;
     private Long password;
     private String content;
-
-
 }
-
-
-

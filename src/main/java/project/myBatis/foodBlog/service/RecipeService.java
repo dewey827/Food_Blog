@@ -49,9 +49,7 @@ public class RecipeService {
                 visualImage.transferTo(new File(savePath));
                 // image_file_table 저장 처리
                 blogRepository.recipeFileSave(imageFileDTO);
-
             }
-
         }
     }
 
@@ -85,9 +83,7 @@ public class RecipeService {
         return blogRepository.recipeFileFind(id);
     }
 
-
     public List<RecipeDTO> findBest() {
         return blogRepository.recipeFindBest();
     }
-
 }

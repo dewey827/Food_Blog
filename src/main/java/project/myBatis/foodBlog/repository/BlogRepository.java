@@ -117,12 +117,9 @@ public class BlogRepository {
     public List<CommentDTO> commentFindAll(){
         return sql.selectList("FoodBlog.commentFindAll");
     }
-//
-//
-//    //D. 방명록 삭제
+
+    //D. 방명록 삭제
     public void commentDelete(Long id){
         sql.delete("FoodBlog.commentDelete", id);
     }
-
-    //=============================================================
 }
